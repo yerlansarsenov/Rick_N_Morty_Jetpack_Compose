@@ -8,8 +8,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.ricknmorty.R
@@ -18,6 +20,8 @@ import com.example.ricknmorty.model.character.CharacterModel
 import com.example.ricknmorty.ui.theme.Shapes
 import com.example.ricknmorty.ui.theme.Typography
 import com.example.ricknmorty.ui.utils.loadImage
+import com.skydoves.landscapist.CircularReveal
+import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun CharacterCard(
@@ -33,21 +37,12 @@ fun CharacterCard(
         elevation = 5.dp
     ) {
         Column {
-            model.image.let { url ->
-                loadImage(
-                    url = url,
-                    placeHolder = R.drawable.im_placeholder
-                ).value?.let { bitmap ->
-                    Image(
-                        bitmap = bitmap.asImageBitmap(),
-                        contentDescription = stringResource(R.string.characters_photo_descriptions),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .requiredHeight(255.dp),
-                        contentScale = ContentScale.Crop
-                    )
-                }
-            }
+            GlideImage(
+                imageModel = model.image,
+                contentScale = ContentScale.Crop,
+                circularReveal = CircularReveal(duration = 150),
+                placeHolder = ImageBitmap.imageResource(id = R.drawable.im_placeholder)
+            )
             Text(
                 text = model.name,
                 modifier = Modifier
