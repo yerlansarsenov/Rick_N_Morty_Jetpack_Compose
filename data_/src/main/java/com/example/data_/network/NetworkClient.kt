@@ -12,7 +12,7 @@ import io.ktor.http.*
 
 private const val TIME_OUT = 60_000
 
-private val ktorHttpClient = HttpClient(Android) {
+internal val ktorHttpClient = HttpClient(Android) {
 
     install(JsonFeature) {
         serializer = KotlinxSerializer(

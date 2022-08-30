@@ -8,7 +8,7 @@ data class BaseResponse<T>(
     @SerialName("info")
     val infoData: InfoData?,
     @SerialName("result")
-    val result: List<T>?,
+    val result: T?,
     @SerialName("error")
     val error: String?
 )
