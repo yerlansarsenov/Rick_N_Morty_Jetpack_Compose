@@ -1,4 +1,4 @@
-package com.example.data.model.episode
+package com.example.data_.model.episode
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

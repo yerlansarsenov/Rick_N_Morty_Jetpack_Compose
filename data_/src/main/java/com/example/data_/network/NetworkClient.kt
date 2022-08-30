@@ -1,6 +1,5 @@
-package com.example.data.network
+package com.example.data_.network
 
-import android.util.Log
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.*
 import io.ktor.client.features.*
@@ -16,11 +15,13 @@ private const val TIME_OUT = 60_000
 private val ktorHttpClient = HttpClient(Android) {
 
     install(JsonFeature) {
-        serializer = KotlinxSerializer(kotlinx.serialization.json.Json {
-            prettyPrint = true
-            isLenient = true
-            ignoreUnknownKeys = true
-        })
+        serializer = KotlinxSerializer(
+            kotlinx.serialization.json.Json {
+                prettyPrint = true
+                isLenient = true
+                ignoreUnknownKeys = true
+            }
+        )
         engine {
             connectTimeout = TIME_OUT
             socketTimeout = TIME_OUT
@@ -28,17 +29,13 @@ private val ktorHttpClient = HttpClient(Android) {
     }
 
     install(Logging) {
-        logger = object : Logger {
-            override fun log(message: String) {
-                Log.v("Logger Ktor =>", message)
-            }
-        }
+        logger = LoggerObject
         level = LogLevel.ALL
     }
 
     install(ResponseObserver) {
         onResponse { response ->
-            Log.d("HTTP status:", "${response.status.value}")
+            LoggerObject.log(response)
         }
     }
 

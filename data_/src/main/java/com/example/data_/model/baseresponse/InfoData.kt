@@ -1,4 +1,4 @@
-package com.example.data.model.baseresponse
+package com.example.data_.model.baseresponse
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

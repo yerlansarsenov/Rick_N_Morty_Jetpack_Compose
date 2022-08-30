@@ -1,4 +1,4 @@
-package com.example.data.model.character
+package com.example.data_.model.character
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
